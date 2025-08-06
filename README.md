@@ -9,7 +9,7 @@ To get started with this project, follow these steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/isanjaymaurya/M-Ganpati-Pandals-Indicator]
+   git clone https://github.com/isanjaymaurya/M-Ganpati-Pandals-Indicator
    ```
 
 2. **Install dependencies:**
