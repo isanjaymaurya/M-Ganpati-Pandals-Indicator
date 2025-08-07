@@ -5,4 +5,5 @@ export type IGanpatiPandal = {
   address: string;
   pincode: string;
   google_link: string;
+  how_to_reach: string;
 };

@@ -41,8 +41,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   return {
     props: {
       ganpatiPandals: parsed.data,
-    },
-    // revalidate: 86400, // Revalidate once a day
+    }
   };
 };
 
@@ -53,38 +52,7 @@ export default function Home({ ganpatiPandals }: Props) {
         <title>M-Ganpati Pandals Indicator</title>
       </Head>
       <main className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold mb-4">Ganpati Pandals in Mumbai</h1>
-        <div className="overflow-x-auto">
-          <table className="min-w-full border border-gray-300">
-            <thead>
-              <tr>
-                <th className="border px-2 py-1">Name</th>
-                <th className="border px-2 py-1">Address</th>
-                <th className="border px-2 py-1">Pincode</th>
-                <th className="border px-2 py-1">Google Link</th>
-              </tr>
-            </thead>
-            <tbody>
-              {ganpatiPandals.map((pandal, idx) => (
-                <tr key={idx}>
-                  <td className="border px-2 py-1">{pandal.name}</td>
-                  <td className="border px-2 py-1">{pandal.address}</td>
-                  <td className="border px-2 py-1">{pandal.pincode}</td>
-                  <td className="border px-2 py-1">
-                    <a
-                      href={pandal.google_link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 underline"
-                    >
-                      Map
-                    </a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <h1 className="text-lg font-bold mb-4 text-center">Ganpati Pandals in Mumbai</h1>
         <GanpatiPandalsMap ganpatiPandals={ganpatiPandals} />
       </main>
     </>

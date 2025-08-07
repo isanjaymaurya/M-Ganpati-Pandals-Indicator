@@ -1,10 +1,19 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+
 import type { IGanpatiPandal } from '../../types/global';
 
 type Props = {
   ganpatiPandals: IGanpatiPandal[];
 };
+
+const ganeshIcon = new L.Icon({
+  iconUrl: '/icon0.svg',
+  iconSize: [50, 50], // Size of the icon
+  iconAnchor: [25, 50], // Anchor point of the icon
+  popupAnchor: [0, -50], // Position of popup relative to icon
+});
 
 export default function GanpatiPandalsMap({ ganpatiPandals }: Props) {
   return (
@@ -17,11 +26,14 @@ export default function GanpatiPandalsMap({ ganpatiPandals }: Props) {
         <Marker
           key={idx}
           position={[parseFloat(pandal.latitude), parseFloat(pandal.longitude)]}
+          icon={ganeshIcon}
         >
           <Popup>
             <strong>{pandal.name}</strong>
             <br />
             {pandal.address}
+            <br />
+            {pandal.how_to_reach}
             <br />
             <a href={pandal.google_link} target="_blank" rel="noopener noreferrer">
               Google Map
