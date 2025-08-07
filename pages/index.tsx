@@ -41,7 +41,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     props: {
       ganpatiPandals: parsed.data,
     },
-    revalidate: 86400, // Revalidate once a day
+    // revalidate: 86400, // Revalidate once a day
   };
 };
 
