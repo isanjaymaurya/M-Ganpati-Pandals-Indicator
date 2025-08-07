@@ -9,7 +9,7 @@ type Props = {
 };
 
 const ganeshIcon = new L.Icon({
-  iconUrl: '/icon0.svg',
+  iconUrl: '/pending-visit-ganpati-pandal-marker.svg',
   iconSize: [50, 50], // Size of the icon
   iconAnchor: [25, 50], // Anchor point of the icon
   popupAnchor: [0, -50], // Position of popup relative to icon
