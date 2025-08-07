@@ -3,6 +3,7 @@ import Papa from 'papaparse';
 import axios from 'axios';
 import https from 'https';
 import dynamic from 'next/dynamic';
+import Head from 'next/head';
 
 import type { IGanpatiPandal } from '../types/global';
 
@@ -47,40 +48,45 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
 export default function Home({ ganpatiPandals }: Props) {
   return (
-    <main className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-4">Ganpati Pandals in Mumbai</h1>
-      <div className="overflow-x-auto">
-        <table className="min-w-full border border-gray-300">
-          <thead>
-            <tr>
-              <th className="border px-2 py-1">Name</th>
-              <th className="border px-2 py-1">Address</th>
-              <th className="border px-2 py-1">Pincode</th>
-              <th className="border px-2 py-1">Google Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            {ganpatiPandals.map((pandal, idx) => (
-              <tr key={idx}>
-                <td className="border px-2 py-1">{pandal.name}</td>
-                <td className="border px-2 py-1">{pandal.address}</td>
-                <td className="border px-2 py-1">{pandal.pincode}</td>
-                <td className="border px-2 py-1">
-                  <a
-                    href={pandal.google_link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 underline"
-                  >
-                    Map
-                  </a>
-                </td>
+    <>
+      <Head>
+        <title>M-Ganpati Pandals Indicator</title>
+      </Head>
+      <main className="container mx-auto px-4 py-8">
+        <h1 className="text-2xl font-bold mb-4">Ganpati Pandals in Mumbai</h1>
+        <div className="overflow-x-auto">
+          <table className="min-w-full border border-gray-300">
+            <thead>
+              <tr>
+                <th className="border px-2 py-1">Name</th>
+                <th className="border px-2 py-1">Address</th>
+                <th className="border px-2 py-1">Pincode</th>
+                <th className="border px-2 py-1">Google Link</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <GanpatiPandalsMap ganpatiPandals={ganpatiPandals} />
-    </main>
+            </thead>
+            <tbody>
+              {ganpatiPandals.map((pandal, idx) => (
+                <tr key={idx}>
+                  <td className="border px-2 py-1">{pandal.name}</td>
+                  <td className="border px-2 py-1">{pandal.address}</td>
+                  <td className="border px-2 py-1">{pandal.pincode}</td>
+                  <td className="border px-2 py-1">
+                    <a
+                      href={pandal.google_link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 underline"
+                    >
+                      Map
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <GanpatiPandalsMap ganpatiPandals={ganpatiPandals} />
+      </main>
+    </>
   );
 }

@@ -4,7 +4,6 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <title>M-Ganpati Pandals Indicator</title>
         <meta name="description" content="A map of Ganpati Pandals in Mumbai" />
         {/* Favicons */}
         <link rel="icon" href="/favicon.ico" />
