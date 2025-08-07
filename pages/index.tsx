@@ -2,19 +2,19 @@ import { GetStaticProps } from 'next';
 import Papa from 'papaparse';
 import axios from 'axios';
 import https from 'https';
+import dynamic from 'next/dynamic';
+
+import type { IGanpatiPandal } from '../types/global';
+
+const GanpatiPandalsMap = dynamic(
+  () => import('../components/Map/Map'),{
+    ssr: false
+  }
+);
 
 const agent = new https.Agent({
   rejectUnauthorized: false,
 });
-
-type IGanpatiPandal = {
-  name: string;
-  latitude: string;
-  longitude: string;
-  address: string;
-  pincode: string;
-  google_link: string;
-};
 
 type Props = {
   ganpatiPandals: IGanpatiPandal[];
@@ -80,6 +80,7 @@ export default function Home({ ganpatiPandals }: Props) {
           </tbody>
         </table>
       </div>
+      <GanpatiPandalsMap ganpatiPandals={ganpatiPandals} />
     </main>
   );
 }
