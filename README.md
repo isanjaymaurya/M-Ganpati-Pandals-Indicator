@@ -2,7 +2,7 @@
 
 Welcome to the **M-Ganpati Pandals Indicator**!  
 A modern, fast, and mobile-friendly web app to discover Ganpati Pandals in Mumbai.  
-Built with [Next.js](https://nextjs.org/) (SSG), [Tailwind CSS](https://tailwindcss.com/), and [TypeScript](https://www.typescriptlang.org/).
+Built with [Next.js](https://nextjs.org/) (SSG), [Tailwind CSS](https://tailwindcss.com/), and [TypeScript](https://www.typescriptlang.org/), [Lefletjs](http://leafletjs.com/).
 
 ---
 
@@ -64,6 +64,6 @@ npm start
 Want to add or update a Ganpati Pandal?  
 Just use our public Google Sheet:
 
-👉 [Click here to add/update pandals](https://docs.google.com/spreadsheets/d/1Z7Dsgv8f0eGSysC6JkOATyBDJODeNd2p8IOiLvPJXlY/edit?usp=sharing)
+👉 [Click here to add/update Ganpati Pandals Details](https://docs.google.com/spreadsheets/d/1Z7Dsgv8f0eGSysC6JkOATyBDJODeNd2p8IOiLvPJXlY/edit?usp=sharing)
 
 *Please provide your valuable suggestions and comments directly in the sheet!*

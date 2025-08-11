@@ -30,3 +30,7 @@ ul {
 button {
   cursor: pointer;
 }
+
+.leaflet-popup-content p {
+  margin: 0px 0px 2.5px 0px !important;
+}

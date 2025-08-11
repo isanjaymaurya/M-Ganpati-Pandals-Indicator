@@ -29,15 +29,15 @@ export default function GanpatiPandalsMap({ ganpatiPandals }: Props) {
           icon={ganeshIcon}
         >
           <Popup>
-            <strong>{pandal.name}</strong>
-            <br />
-            {pandal.address}
-            <br />
-            {pandal.how_to_reach}
-            <br />
-            <a href={pandal.google_link} target="_blank" rel="noopener noreferrer">
-              Google Map
-            </a>
+            <p className='text-base font-bold mb-0.5'>{pandal.name}</p>
+            <p><strong>Address:</strong> {pandal.address}</p>
+            <p><strong>How to Reach:</strong> {pandal.how_to_reach}</p>
+            <p><strong>Visarjan Date:</strong> {pandal.ganpati_visarjan_date}</p>
+            <p>
+              <a href={pandal.google_link} target="_blank" rel="noopener noreferrer">
+                Google Map
+              </a>
+            </p>
           </Popup>
         </Marker>
       ))}
