@@ -12,9 +12,9 @@ export default function Document() {
         {/* Apple Touch Icons */}
         <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
         {/* Manifest */}
-        <link rel="manifest" href="manifest.json" />
+        {/* <link rel="manifest" href="manifest.json" /> */}
         {/* Browserconfig */}
-        <meta name="msapplication-config" content="browserconfig.xml" />
+        {/* <meta name="msapplication-config" content="browserconfig.xml" /> */}
         {/* Theme color */}
         <meta name="theme-color" content="#ffffff" />
       </Head>

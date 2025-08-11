@@ -17,7 +17,7 @@ const ganeshIcon = new L.Icon({
 
 export default function GanpatiPandalsMap({ ganpatiPandals }: Props) {
   return (
-    <MapContainer center={[19.076, 72.877]} zoom={12} style={{ height: '400px', width: '100%' }}>
+    <MapContainer center={[18.9582, 72.8321]} zoom={12} style={{ height: '400px', width: '100%' }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         // attribution="&copy; OpenStreetMap contributors"

@@ -2,6 +2,7 @@
   "name": "m-ganpati-pandals-indicator",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://isanjaymaurya.github.io/M-Ganpati-Pandals-Indicator/",
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
