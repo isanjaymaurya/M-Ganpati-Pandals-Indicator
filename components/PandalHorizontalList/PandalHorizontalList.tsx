@@ -52,7 +52,7 @@ const PandalHorizontalList: React.FC<Props> = ({ ganpatiPandals, selectedPandal,
 
   return (
     <div className="flex flex-col h-[300px] w-full items-center" {...swipeHandlers}>
-      <div className="w-full flex flex-col items-center justify-center">
+      <div className="w-full flex flex-col items-center justify-center mt-2">
         <SinglePandalCard pandal={pandal} />
         <div className="flex justify-between items-center w-full mt-2">
           <button

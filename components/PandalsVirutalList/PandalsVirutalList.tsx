@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, AutoSizer } from 'react-virtualized';
+import { MapPin, MapPinCheck } from 'lucide-react';
 import type { IGanpatiPandal } from '../../types/global';
-import { MapPin } from 'lucide-react';
 
 interface Props {
   ganpatiPandals: IGanpatiPandal[];
@@ -40,23 +40,34 @@ const PandalsVirutalList: React.FC<Props> = ({ ganpatiPandals, onSelectPandal })
       <div
         key={key}
         style={style}
-        className={`px-3 flex items-center transition-colors bg-gray-100 rounded-xl mb-3 group`}
+        className="border px-3 flex gap-2 items-center bg-gray-100 rounded-xl mb-3"
       >
         <div>
-          <p className="font-semibold text-base">{highlightMatch(pandal.name, filter)}</p>
-          <p className="text-sm text-gray-600">{highlightMatch(pandal.address, filter)}</p>
+          <p className="font-semibold text-sm">{highlightMatch(pandal.name, filter)}</p>
+          <p className="text-xs text-gray-600">{highlightMatch(pandal.address, filter)}</p>
         </div>
-        <div className='justify-end flex-1 text-right'>
+        <div className='justify-end flex-1 flex items-center'>
           <button
             onClick={() => {
               setSelectedIndex(index);
               if (onSelectPandal) onSelectPandal(pandal);
             }}
-            className={`px-2 transition-colors outline-none ${isSelected ? 'text-blue-600' : 'text-gray-400'} group-hover:text-blue-500 hover:text-blue-500`}
+            className={`px-2 transition-colors outline-none ${isSelected ? 'text-blue-600' : 'text-gray-400'} hover:text-blue-500 hover:text-blue-500`}
             tabIndex={0}
             aria-label="Show on map"
+            title='Show on map'
           >
-            <MapPin />
+            <MapPin size={20} className='mx-auto' />
+            <span className='text-[10px] whitespace-nowrap'>2.3 km</span>
+          </button>
+          <button
+            className={`px-2 transition-colors outline-none text-gray-500 hover:text-green-500`}
+            tabIndex={0}
+            aria-label="Visited"
+            title='Mark as visited'
+          >
+            <MapPinCheck size={20} className='mx-auto' />
+            <span className='text-[10px]'>Visited</span>
           </button>
         </div>
         {/* <p className="text-sm text-gray-600">
@@ -73,7 +84,7 @@ const PandalsVirutalList: React.FC<Props> = ({ ganpatiPandals, onSelectPandal })
         value={filter}
         onChange={e => setFilter(e.target.value)}
         placeholder="Search by name or address..."
-        className="mb-2 px-3 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+        className="mb-2 px-3 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-gray-100"
       />
       <div className="flex-1">
         {filteredPandals.length === 0 ? (
