@@ -1,13 +1,14 @@
 import React from 'react';
 import { List, AutoSizer } from 'react-virtualized';
 import type { IGanpatiPandal } from '../../types/global';
+import { MapPin } from 'lucide-react';
 
 interface Props {
   ganpatiPandals: IGanpatiPandal[];
   onSelectPandal?: (pandal: IGanpatiPandal) => void;
 }
 
-const rowHeight = 80;
+const rowHeight = 60;
 
 const PandalsVirutalList: React.FC<Props> = ({ ganpatiPandals, onSelectPandal }) => {
   const [filter, setFilter] = React.useState('');
@@ -39,14 +40,25 @@ const PandalsVirutalList: React.FC<Props> = ({ ganpatiPandals, onSelectPandal })
       <div
         key={key}
         style={style}
-        className={`border-b px-4 py-2 cursor-pointer transition-colors ${isSelected ? 'bg-blue-100' : ''}`}
-        onClick={() => {
-          setSelectedIndex(index);
-          if (onSelectPandal) onSelectPandal(pandal);
-        }}
+        className={`px-3 flex items-center transition-colors bg-gray-100 rounded-xl mb-3 group`}
       >
-        <p className="font-semibold text-base">{highlightMatch(pandal.name, filter)}</p>
-        <p className="text-sm text-gray-600">{highlightMatch(pandal.address, filter)}</p>
+        <div>
+          <p className="font-semibold text-base">{highlightMatch(pandal.name, filter)}</p>
+          <p className="text-sm text-gray-600">{highlightMatch(pandal.address, filter)}</p>
+        </div>
+        <div className='justify-end flex-1 text-right'>
+          <button
+            onClick={() => {
+              setSelectedIndex(index);
+              if (onSelectPandal) onSelectPandal(pandal);
+            }}
+            className={`px-2 transition-colors outline-none ${isSelected ? 'text-blue-600' : 'text-gray-400'} group-hover:text-blue-500 hover:text-blue-500`}
+            tabIndex={0}
+            aria-label="Show on map"
+          >
+            <MapPin />
+          </button>
+        </div>
         {/* <p className="text-sm text-gray-600">
           <strong>Visarjan Date:</strong> {pandal.ganpati_visarjan_date}
         </p> */}
