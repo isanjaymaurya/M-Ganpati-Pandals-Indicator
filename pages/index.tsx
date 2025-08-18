@@ -1,14 +1,26 @@
+import React from 'react';
 import { GetStaticProps } from 'next';
 import Papa from 'papaparse';
 import axios from 'axios';
 import https from 'https';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-
 import type { IGanpatiPandal } from '../types/global';
+import useIsDesktop from '@/hooks/useIsDesktop';
+
+const PandalsVirutalList = dynamic(() => import('@/components/PandalsVirutalList/PandalsVirutalList'), {
+  ssr: false,
+  loading: () => null,
+});
+
+const PandalHorizontalList = dynamic(
+  () => import('@/components/PandalHorizontalList/PandalHorizontalList'),{
+    ssr: false
+  }
+);
 
 const GanpatiPandalsMap = dynamic(
-  () => import('../components/Map/Map'),{
+  () => import('../components/GanpatiPandalsMap/GanpatiPandalsMap'),{
     ssr: false
   }
 );
@@ -46,14 +58,26 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 };
 
 export default function Home({ ganpatiPandals }: Props) {
+  const isDesktop = useIsDesktop();
+  const [selectedPandal, setSelectedPandal] = React.useState<IGanpatiPandal | null>(null);
   return (
     <>
       <Head>
         <title>M-Ganpati Pandals Indicator</title>
       </Head>
-      <main className="container mx-auto px-4 py-8">
-        <h1 className="text-lg font-bold mb-4 text-center">Ganpati Pandals in Mumbai</h1>
-        <GanpatiPandalsMap ganpatiPandals={ganpatiPandals} />
+      <main className="container mx-auto px-4 py-3 sm:py-12">
+        <div className='flex sm:gap-4 flex-col md:flex-row'>
+          <div className='md:w-2/3 w-full'>
+            <GanpatiPandalsMap ganpatiPandals={ganpatiPandals} selectedPandal={selectedPandal} />
+          </div>
+          <div className='md:w-1/3 w-full'>
+            {isDesktop ? (
+              <PandalsVirutalList ganpatiPandals={ganpatiPandals} onSelectPandal={setSelectedPandal} />
+            ) : (
+              <PandalHorizontalList ganpatiPandals={ganpatiPandals} selectedPandal={selectedPandal} onSelectPandal={setSelectedPandal} />
+            )}
+          </div>
+        </div>
       </main>
     </>
   );
