@@ -66,7 +66,7 @@ export default function Home({ ganpatiPandals }: Props) {
         <title>M-Ganpati Pandals Indicator</title>
       </Head>
       <main className="container mx-auto px-4 py-3 sm:py-12">
-        <div className='flex sm:gap-4 flex-col md:flex-row'>
+        <div className='flex gap-3 sm:gap-4 flex-col md:flex-row'>
           <div className='md:w-1/2 lg:w-2/3 w-full'>
             <GanpatiPandalsMap ganpatiPandals={ganpatiPandals} selectedPandal={selectedPandal} />
           </div>

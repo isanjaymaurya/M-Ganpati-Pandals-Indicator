@@ -9,3 +9,7 @@ export type IGanpatiPandal = {
   total_available_days: number;
   ganpati_visarjan_date: string;
 };
+
+export interface IVisitedPandalsState {
+  visited: Array<{ name: string; lat: number; lng: number }>;
+}
