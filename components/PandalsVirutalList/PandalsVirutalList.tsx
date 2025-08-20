@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, AutoSizer } from 'react-virtualized';
+import { List, AutoSizer, CellMeasurer, CellMeasurerCache } from 'react-virtualized';
 import { MapPin, MapPinCheck } from 'lucide-react';
 import type { IGanpatiPandal } from '../../types/global';
 
@@ -8,7 +8,10 @@ interface Props {
   onSelectPandal?: (pandal: IGanpatiPandal) => void;
 }
 
-const rowHeight = 60;
+const cache = new CellMeasurerCache({
+  fixedWidth: true,
+  defaultHeight: 80,
+});
 
 const PandalsVirutalList: React.FC<Props> = ({ ganpatiPandals, onSelectPandal }) => {
   const [filter, setFilter] = React.useState('');
@@ -40,39 +43,45 @@ const PandalsVirutalList: React.FC<Props> = ({ ganpatiPandals, onSelectPandal })
       <div
         key={key}
         style={style}
-        className="border px-3 flex gap-2 items-center bg-gray-100 rounded-xl mb-3"
+        className='py-1'
       >
-        <div>
-          <p className="font-semibold text-sm">{highlightMatch(pandal.name, filter)}</p>
-          <p className="text-xs text-gray-600">{highlightMatch(pandal.address, filter)}</p>
+        <div className="border px-3 py-2 flex gap-2 items-center bg-gray-100 rounded-xl">
+          <div>
+            <p className="font-semibold text-sm mb-0.5">
+              {highlightMatch(pandal.name, filter)}
+            </p>
+            <p className="text-xs text-gray-600 mb-0.5">
+              {highlightMatch(pandal.address, filter)}
+            </p>
+            <p className="text-xs text-gray-600">
+              <strong>Visarjan Date:</strong> {pandal.ganpati_visarjan_date}
+            </p>
+          </div>
+          <div className='justify-end flex-1 flex items-center'>
+            <button
+              onClick={() => {
+                setSelectedIndex(index);
+                if (onSelectPandal) onSelectPandal(pandal);
+              }}
+              className={`px-2 transition-colors outline-none ${isSelected ? 'text-blue-600' : 'text-gray-400'} hover:text-blue-500 hover:text-blue-500`}
+              tabIndex={0}
+              aria-label="Show on map"
+              title='Show on map'
+            >
+              <MapPin size={20} className='mx-auto' />
+              <span className='text-[10px] whitespace-nowrap'>2.3 km</span>
+            </button>
+            <button
+              className={`px-2 transition-colors outline-none text-gray-500 hover:text-green-500`}
+              tabIndex={0}
+              aria-label="Visited"
+              title='Mark as visited'
+            >
+              <MapPinCheck size={20} className='mx-auto' />
+              <span className='text-[10px]'>Visited</span>
+            </button>
+          </div>
         </div>
-        <div className='justify-end flex-1 flex items-center'>
-          <button
-            onClick={() => {
-              setSelectedIndex(index);
-              if (onSelectPandal) onSelectPandal(pandal);
-            }}
-            className={`px-2 transition-colors outline-none ${isSelected ? 'text-blue-600' : 'text-gray-400'} hover:text-blue-500 hover:text-blue-500`}
-            tabIndex={0}
-            aria-label="Show on map"
-            title='Show on map'
-          >
-            <MapPin size={20} className='mx-auto' />
-            <span className='text-[10px] whitespace-nowrap'>2.3 km</span>
-          </button>
-          <button
-            className={`px-2 transition-colors outline-none text-gray-500 hover:text-green-500`}
-            tabIndex={0}
-            aria-label="Visited"
-            title='Mark as visited'
-          >
-            <MapPinCheck size={20} className='mx-auto' />
-            <span className='text-[10px]'>Visited</span>
-          </button>
-        </div>
-        {/* <p className="text-sm text-gray-600">
-          <strong>Visarjan Date:</strong> {pandal.ganpati_visarjan_date}
-        </p> */}
       </div>
     );
   };
@@ -98,8 +107,19 @@ const PandalsVirutalList: React.FC<Props> = ({ ganpatiPandals, onSelectPandal })
                 width={width}
                 height={height}
                 rowCount={filteredPandals.length}
-                rowHeight={rowHeight}
-                rowRenderer={rowRenderer}
+                rowHeight={cache.rowHeight}
+                deferredMeasurementCache={cache}
+                rowRenderer={({ index, key, style, parent }) => (
+                  <CellMeasurer
+                    key={key}
+                    cache={cache}
+                    columnIndex={0}
+                    rowIndex={index}
+                    parent={parent}
+                  >
+                    {rowRenderer({ index, key, style })}
+                  </CellMeasurer>
+                )}
                 overscanRowCount={5}
               />
             )}
