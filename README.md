@@ -2,7 +2,17 @@
 
 Welcome to the **M-Ganpati Pandals Indicator**!  
 A modern, fast, and mobile-friendly web app to discover Ganpati Pandals in Mumbai.  
-Built with [Next.js](https://nextjs.org/) (SSG), [Tailwind CSS](https://tailwindcss.com/), and [TypeScript](https://www.typescriptlang.org/), [Lefletjs](http://leafletjs.com/).
+
+**Tech Stack:**
+- [Next.js](https://nextjs.org/) (SSG)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/) for state management
+- [Redux Persist](https://github.com/rt2zz/redux-persist) for persistent state in Local Storage
+- [react-virtualized](https://github.com/bvaughn/react-virtualized) for performant lists
+- [react-swipeable](https://www.npmjs.com/package/react-swipeable) for swipe gestures
+- [Leaflet.js](http://leafletjs.com/) for interactive maps
+- [Carto](https://carto.com/) for map tiles and geospatial data
 
 ---
 
